@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfolio de Yan Fred NJOMANI SONTA - Analyste Statisticien & Data Scientist">
+    <title>Yan Fred NJOMANI SONTA | Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Progress Bar -->
+    <div id="progress-bar"></div>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-text">YF</span>
+                <span class="logo-name">Yan Fred</span>
+            </div>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="#home" class="nav-link active">Accueil</a></li>
+                <li><a href="#about" class="nav-link">À Propos</a></li>
+                <li><a href="#skills" class="nav-link">Compétences</a></li>
+                <li><a href="#projects" class="nav-link">Projets</a></li>
+                <li><a href="#experience" class="nav-link">Expérience</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-particles"></div>
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">
+                    <span class="greeting">Bonjour, je suis</span>
+                    <span class="name">Yan Fred NJOMANI SONTA</span>
+                </h1>
+                <div class="typing-container">
+                    <span class="typing-text" id="typing-text"></span>
+                    <span class="cursor">|</span>
+                </div>
+                <p class="hero-description">
+                    Étudiant passionné de statistiques et data science, transformant les données en insights innovants
+                </p>
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn btn-primary">
+                        <i class="fas fa-briefcase"></i> Mes Projets
+                    </a>
+                    <a href="#contact" class="btn btn-secondary">
+                        <i class="fas fa-envelope"></i> Me Contacter
+                    </a>
+                </div>
+                <div class="social-links">
+                    <a href="https://bit.ly/46DIB7P" target="_blank" class="social-link" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://github.com/Fred-Sonta" target="_blank" class="social-link" aria-label="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="mailto:fred.njomani@ensea.edu.ci" class="social-link" aria-label="Email">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="image-container">
+                    <div class="glow-effect"></div>
+                    <img src="profile.jpg" alt="Yan Fred NJOMANI SONTA" class="profile-image">
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <span>Scroll</span>
+            <div class="scroll-arrow"></div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about section">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">
+                <span class="title-number">01.</span> À Propos de Moi
+            </h2>
+            <div class="about-content">
+                <div class="about-text" data-aos="fade-right">
+                    <h3>Profil</h3>
+                    <p>
+                        Étudiant excellent, passionné de statistiques et de mathématiques, je vois dans la manipulation des données un outil d'impact et d'innovation. Guidé par une formation exigeante et une soif d'apprentissage continu, j'allie rigueur analytique et ouverture d'esprit pour progresser et inspirer autour de moi.
+                    </p>
+                    <div class="about-stats">
+                        <div class="stat-item">
+                            <i class="fas fa-award"></i>
+                            <div>
+                                <h4>Boursier d'Excellence</h4>
+                                <p>État Camerounais 2023</p>
+                            </div>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-globe"></i>
+                            <div>
+                                <h4>Langues</h4>
+                                <p>Français (Natif), Anglais (C1)</p>
+                            </div>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-flag"></i>
+                            <div>
+                                <h4>Nationalité</h4>
+                                <p>Camerounais</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-timeline" data-aos="fade-left">
+                    <h3>Formation</h3>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <span class="timeline-date">2023 – 2026</span>
+                                <h4>École Nationale Supérieure de Statistiques et d'Économie Appliquée (ENSEA)</h4>
+                                <p class="timeline-location"><i class="fas fa-map-marker-alt"></i> Côte d'Ivoire</p>
+                                <p>Cycle Analyste Statisticien, spécialité Data Science (Bac +3, en cours)</p>
+                                <div class="timeline-badge">
+                                    <i class="fas fa-trophy"></i> Boursier d'excellence - 10 sélectionnés sur concours national
+                                </div>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <span class="timeline-date">2021 – 2023</span>
+                                <h4>Université de Dschang</h4>
+                                <p class="timeline-location"><i class="fas fa-map-marker-alt"></i> Cameroun</p>
+                                <p>Licence 2 en Mathématiques Appliquées (Bac +2)</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <span class="timeline-date">2020 – 2021</span>
+                                <h4>Lycée Classique de Dschang</h4>
+                                <p class="timeline-location"><i class="fas fa-map-marker-alt"></i> Cameroun</p>
+                                <p>Baccalauréat Scientifique - Mention Bien</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills section">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">
+                <span class="title-number">02.</span> Compétences
+            </h2>
+            <div class="skills-container">
+                <div class="skill-category" data-aos="fade-up" data-aos-delay="100">
+                    <div class="skill-header">
+                        <i class="fas fa-chart-line"></i>
+                        <h3>Statistiques & Économétrie</h3>
+                    </div>
+                    <div class="skill-list">
+                        <div class="skill-item">
+                            <span>Économétrie linéaire et séries temporelles</span>
+                            <div class="skill-bar"><div class="skill-progress" data-progress="90"></div></div>
+                        </div>
+                        <div class="skill-item">
+                            <span>Statistiques descriptives et inférentielles</span>
+                            <div class="skill-bar"><div class="skill-progress" data-progress="95"></div></div>
+                        </div>
+                        <div class="skill-item">
+                            <span>Tests d'hypothèses</span>
+                            <div class="skill-bar"><div class="skill-progress" data-progress="90"></div></div>
+                        </div>
+                        <div class="skill-item">
+                            <span>ACP, ACM, Classification</span>
+                            <div class="skill-bar"><div class="skill-progress" data-progress="85"></div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-category" data-aos="fade-up" data-aos-delay="200">
+                    <div class="skill-header">
+                        <i class="fas fa-robot"></i>
+                        <h3>Machine Learning & Data Science</h3>
+                    </div>
+                    <div class="skill-list">
+                        <div class="skill-item">
+                            <span>Machine Learning</span>
+                            <div class="skill-bar"><div class="skill-progress" data-progress="85"></div></div>
+                        </div>
+                        <div class="skill-item">
+                            <span>Web Scraping</span>
+                            <div class="skill-bar"><div class="skill-progress" data-progress="80"></div></div>
+                        </div>
+                        <div class="skill-item">
+                            <span>Cloud Computing & Big Data</span>
+                            <div class="skill-bar"><div class="skill-progress" data-progress="75"></div></div>
+                        </div>
+                        <div class="skill-item">
+                            <span>Computer Vision & Deep Learning</span>
+                            <div class="skill-bar"><div class="skill-progress" data-progress="70"></div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-category" data-aos="fade-up" data-aos-delay="300">
+                    <div class="skill-header">
+                        <i class="fas fa-chart-bar"></i>
+                        <h3>Data Visualisation & Reporting</h3>
+                    </div>
+                    <div class="skill-list">
+                        <div class="skill-item">
+                            <span>Power BI</span>
+                            <div class="skill-bar"><div class="skill-progress" data-progress="88"></div></div>
+                        </div>
+                        <div class="skill-item">
+                            <span>Excel / VBA (avancé)</span>
+                            <div class="skill-bar"><div class="skill-progress" data-progress="92"></div></div>
+                        </div>
+                        <div class="skill-item">
+                            <span>RShiny</span>
+                            <div class="skill-bar"><div class="skill-progress" data-progress="80"></div></div>
+                        </div>
+                        <div class="skill-item">
+                            <span>Tableau</span>
+                            <div class="skill-bar"><div class="skill-progress" data-progress="75"></div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-category" data-aos="fade-up" data-aos-delay="400">
+                    <div class="skill-header">
+                        <i class="fas fa-code"></i>
+                        <h3>Programmation & Bases de données</h3>
+                    </div>
+                    <div class="skill-list">
+                        <div class="skill-item">
+                            <span>Python (avancé)</span>
+                            <div class="skill-bar"><div class="skill-progress" data-progress="93"></div></div>
+                        </div>
+                        <div class="skill-item">
+                            <span>R / RStudio</span>
+                            <div class="skill-bar"><div class="skill-progress" data-progress="88"></div></div>
+                        </div>
+                        <div class="skill-item">
+                            <span>SQL / PostgreSQL</span>
+                            <div class="skill-bar"><div class="skill-progress" data-progress="85"></div></div>
+                        </div>
+                        <div class="skill-item">
+                            <span>HTML, CSS, JavaScript</span>
+                            <div class="skill-bar"><div class="skill-progress" data-progress="82"></div></div>
+                        </div>
+                        <div class="skill-item">
+                            <span>Stata, SPSS, Matlab, LaTeX</span>
+                            <div class="skill-bar"><div class="skill-progress" data-progress="80"></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="certifications" data-aos="fade-up">
+                <h3><i class="fas fa-certificate"></i> Certifications</h3>
+                <div class="cert-list">
+                    <div class="cert-item">
+                        <i class="fab fa-python"></i>
+                        <span>Python for Data Science – IBM Cognitive Class 2025</span>
+                    </div>
+                    <div class="cert-item">
+                        <i class="fab fa-r-project"></i>
+                        <span>R for Data Science – IBM Cognitive Class 2025</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects section">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">
+                <span class="title-number">03.</span> Projets
+            </h2>
+            <div class="projects-grid">
+                <div class="project-card" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="project-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>Churn Prediction with Machine Learning</h3>
+                    <p>Développement d'un modèle prédictif pour anticiper le taux de désabonnement des clients en utilisant des algorithmes de machine learning avancés.</p>
+                    <div class="project-tags">
+                        <span>Python</span>
+                        <span>Scikit-learn</span>
+                        <span>ML</span>
+                    </div>
+                    <div class="project-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+
+                <div class="project-card" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="project-icon">
+                        <i class="fas fa-project-diagram"></i>
+                    </div>
+                    <h3>ACP et ACM with Python</h3>
+                    <p>Analyse en Composantes Principales et Analyse des Correspondances Multiples pour réduire la dimensionnalité et visualiser des données complexes.</p>
+                    <div class="project-tags">
+                        <span>Python</span>
+                        <span>ACP</span>
+                        <span>ACM</span>
+                        <span>Pandas</span>
+                    </div>
+                    <div class="project-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+
+                <div class="project-card" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="project-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Projet d'Analyse Économétrique</h3>
+                    <p>Étude économétrique approfondie utilisant des modèles de régression avancés et analyse de séries temporelles pour comprendre les dynamiques économiques.</p>
+                    <div class="project-tags">
+                        <span>Économétrie</span>
+                        <span>Stata</span>
+                        <span>R</span>
+                    </div>
+                    <div class="project-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+
+                <div class="project-card" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="project-icon">
+                        <i class="fas fa-tasks"></i>
+                    </div>
+                    <h3>Application de Suivi des Tâches VBA Excel</h3>
+                    <p>Développement d'une application complète de gestion et suivi des tâches avec interface utilisateur intuitive en VBA Excel.</p>
+                    <div class="project-tags">
+                        <span>VBA</span>
+                        <span>Excel</span>
+                        <span>Automation</span>
+                    </div>
+                    <div class="project-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+
+                <div class="project-card" data-aos="zoom-in" data-aos-delay="500">
+                    <div class="project-icon">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <h3>Dashboard PowerBI - Plantation Agricole</h3>
+                    <p>Tableau de bord interactif pour l'analyse de performance d'une plantation agricole avec visualisations avancées et KPIs en temps réel.</p>
+                    <div class="project-tags">
+                        <span>Power BI</span>
+                        <span>Excel</span>
+                        <span>Dashboard</span>
+                    </div>
+                    <div class="project-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+
+                <div class="project-card" data-aos="zoom-in" data-aos-delay="600">
+                    <div class="project-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3>Application Web Flask - Convivialité CEMAC</h3>
+                    <p>Assistant financier full-stack développé avec Flask et IA générative pour la gestion budgétaire, incluant tableaux de bord et recommandations intelligentes.</p>
+                    <div class="project-tags">
+                        <span>Flask</span>
+                        <span>Python</span>
+                        <span>IA</span>
+                        <span>Full-Stack</span>
+                    </div>
+                    <div class="project-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+
+                <div class="project-card" data-aos="zoom-in" data-aos-delay="700">
+                    <div class="project-icon">
+                        <i class="fas fa-globe-africa"></i>
+                    </div>
+                    <h3>Analyse Commerce Afrique Subsaharienne</h3>
+                    <p>Rapport d'analyse statistique et économique approfondi du commerce des pays de l'Afrique subsaharienne (Projet de fin d'année ENSEA).</p>
+                    <div class="project-tags">
+                        <span>Statistiques</span>
+                        <span>Économie</span>
+                        <span>R</span>
+                        <span>ENSEA</span>
+                    </div>
+                    <div class="project-overlay">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="experience section">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">
+                <span class="title-number">04.</span> Expérience
+            </h2>
+            
+            <div class="experience-container">
+                <div class="experience-card" data-aos="fade-right">
+                    <div class="exp-header">
+                        <i class="fas fa-briefcase"></i>
+                        <div>
+                            <h3>Assistant d'Études Statistiques (Stagiaire)</h3>
+                            <h4>Direction des Études, Stratégies, Planification et Statistiques (DESPS)</h4>
+                            <p class="exp-location"><i class="fas fa-map-marker-alt"></i> Abidjan, Côte d'Ivoire</p>
+                            <p class="exp-date"><i class="far fa-calendar"></i> Août – Septembre 2025</p>
+                        </div>
+                    </div>
+                    <ul class="exp-details">
+                        <li>Analyse de données éducatives avec Excel et Python pour produire des statistiques sectorielles</li>
+                        <li>Support à la prise de décisions stratégiques pour plus de 5 projets éducatifs</li>
+                        <li>Développement de compétences collaboratives et analytiques en milieu professionnel</li>
+                    </ul>
+                </div>
+
+                <h3 class="subsection-title" data-aos="fade-up">Expérience Extra-Scolaire</h3>
+
+                <div class="experience-card" data-aos="fade-left">
+                    <div class="exp-header">
+                        <i class="fas fa-users"></i>
+                        <div>
+                            <h3>Directeur Marketing et Communication</h3>
+                            <h4>ENSEA Junior Services (EJS)</h4>
+                            <p class="exp-location"><i class="fas fa-map-marker-alt"></i> ENSEA, Abidjan</p>
+                            <p class="exp-date"><i class="far fa-calendar"></i> 2025 – 2026</p>
+                        </div>
+                    </div>
+                    <ul class="exp-details">
+                        <li>Conception et déploiement d'une stratégie de communication ciblée avec campagnes LinkedIn</li>
+                        <li>Augmentation de la visibilité de la Junior Entreprise auprès de plus de 5 entreprises partenaires</li>
+                        <li>Gestion de l'image de marque et développement de la communication digitale</li>
+                    </ul>
+                </div>
+
+                <div class="experience-card" data-aos="fade-right">
+                    <div class="exp-header">
+                        <i class="fas fa-database"></i>
+                        <div>
+                            <h3>Secrétaire Général</h3>
+                            <h4>ENSEA Data Science Club (EDSC)</h4>
+                            <p class="exp-location"><i class="fas fa-map-marker-alt"></i> ENSEA, Abidjan</p>
+                            <p class="exp-date"><i class="far fa-calendar"></i> 2025 – 2026</p>
+                        </div>
+                    </div>
+                    <ul class="exp-details">
+                        <li>Coordination d'ateliers et conférences (50+ participants) sur Python et Machine Learning</li>
+                        <li>Pilotage de projets étudiants d'analyse prédictive</li>
+                        <li>Amélioration du taux de participation et de l'engagement des membres</li>
+                    </ul>
+                </div>
+
+                <div class="experience-card" data-aos="fade-left">
+                    <div class="exp-header">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                        <div>
+                            <h3>Enseignant de Mathématiques à Domicile</h3>
+                            <h4>Cours de Soutien</h4>
+                            <p class="exp-location"><i class="fas fa-map-marker-alt"></i> Université de Dschang, Cameroun</p>
+                            <p class="exp-date"><i class="far fa-calendar"></i> 2021 – 2023</p>
+                        </div>
+                    </div>
+                    <ul class="exp-details">
+                        <li>Enseignement de mathématiques à des étudiants de différents niveaux</li>
+                        <li>Développement de méthodes pédagogiques adaptées</li>
+                        <li>Amélioration significative des résultats des étudiants</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact section">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">
+                <span class="title-number">05.</span> Contact
+            </h2>
+            <div class="contact-content">
+                <div class="contact-info" data-aos="fade-right">
+                    <h3>Restons en Contact</h3>
+                    <p>Je suis toujours ouvert à de nouvelles opportunités et collaborations. N'hésitez pas à me contacter !</p>
+                    
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <h4>Email</h4>
+                                <a href="mailto:fred.njomani@ensea.edu.ci">fred.njomani@ensea.edu.ci</a>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <h4>Téléphone</h4>
+                                <a href="tel:+2250153736070">+225 01 53 73 60 70</a>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fab fa-linkedin"></i>
+                            <div>
+                                <h4>LinkedIn</h4>
+                                <a href="https://bit.ly/46DIB7P" target="_blank">Yan Fred NJOMANI SONTA</a>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fab fa-github"></i>
+                            <div>
+                                <h4>GitHub</h4>
+                                <a href="https://github.com/Fred-Sonta" target="_blank">Fred-Sonta</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <form id="contact-form" class="contact-form" data-aos="fade-left">
+                    <div class="form-group">
+                        <input type="text" id="name" name="name" placeholder="Votre nom" required>
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" name="email" placeholder="Votre email" required>
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="subject" name="subject" placeholder="Sujet" required>
+                        <i class="fas fa-tag"></i>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="message" name="message" rows="5" placeholder="Votre message" required></textarea>
+                        <i class="fas fa-comment"></i>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-paper-plane"></i> Envoyer le Message
+                    </button>
+                    <div id="form-status"></div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2025 Yan Fred NJOMANI SONTA. Tous droits réservés.</p>
+                <p class="footer-tagline">Conçu et développé avec <i class="fas fa-heart"></i> et <i class="fas fa-code"></i></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
