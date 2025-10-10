@@ -26,6 +26,10 @@
     box-sizing: border-box;
 }
 
+a {
+    color: white;
+}
+
 html {
     scroll-behavior: smooth;
 }
