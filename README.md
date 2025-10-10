@@ -1,16 +1,5 @@
 # Portfolio Web - Yan Fred NJOMANI SONTA
 
-## 🚀 Démarrage Rapide
-
-Le serveur est configuré pour démarrer automatiquement. Le portfolio est accessible à l'URL de votre Replit.
-
-### Lancement manuel
-```bash
-python3 server.py
-```
-
-Le site sera accessible sur `http://0.0.0.0:5000`
-
 ## 📋 Fonctionnalités
 
 - ✨ Portfolio moderne et dynamique avec animations
@@ -20,30 +9,6 @@ Le site sera accessible sur `http://0.0.0.0:5000`
 - 📝 Formulaire de contact fonctionnel avec backend
 - 🎯 Timeline interactive de la formation
 - 🌐 Liens vers réseaux sociaux (LinkedIn, GitHub)
-
-## 📬 Messages de Contact
-
-Les messages envoyés via le formulaire de contact sont enregistrés dans le fichier :
-```
-messages/contacts.json
-```
-
-### Consulter les messages reçus
-```bash
-cat messages/contacts.json
-```
-
-Ou avec formatage JSON :
-```bash
-python3 -m json.tool messages/contacts.json
-```
-
-Chaque message contient :
-- `timestamp` : Date et heure de réception
-- `name` : Nom de l'expéditeur
-- `email` : Email de l'expéditeur
-- `subject` : Sujet du message
-- `message` : Contenu du message
 
 ## 🛠️ Technologies
 
@@ -64,34 +29,9 @@ Chaque message contient :
 ├── messages/           # Dossier des messages de contact
 │   └── contacts.json   # Messages enregistrés
 ├── .gitignore         # Fichiers ignorés par Git
-├── replit.md          # Documentation détaillée
-└── README.md          # Ce fichier
+├── 
+└── README.md          # Fichier readme
 ```
-
-## 🎨 Personnalisation
-
-### Modifier les couleurs
-Éditez les variables CSS dans `styles.css` :
-```css
-:root {
-    --primary-color: #00d4ff;
-    --secondary-color: #0099cc;
-    --accent-color: #ff6b35;
-    /* ... */
-}
-```
-
-### Ajouter/Modifier des projets
-Modifiez la section projets dans `index.html` (ligne ~312)
-
-### Modifier les informations de contact
-Mettez à jour les informations dans `index.html` (section contact)
-
-## 📝 Notes Importantes
-
-- Le cache est désactivé pour voir les modifications immédiatement
-- Le serveur utilise `allow_reuse_address` pour éviter les conflits de port
-- Les messages de contact sont stockés localement (non envoyés par email)
 
 ## 📞 Contact
 
