@@ -55,11 +55,11 @@ window.addEventListener('scroll', () => {
 
 // ===== Typing Effect =====
 const texts = [
-    'Analyste Statisticien',
-    'Data Scientist',
-    'Machine Learning Engineer',
+    'Statistical Analyst',
+    'Data Science',
+    'AI',
     'Data Analyst',
-    'Python Developer'
+    'I love python !'
 ];
 
 let textIndex = 0;
