@@ -1,354 +1,264 @@
-// ===== Progress Bar =====
-window.addEventListener('scroll', () => {
-    const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    const scrolled = (winScroll / height) * 100;
-    document.getElementById('progress-bar').style.width = scrolled + '%';
-});
+document.addEventListener('DOMContentLoaded', () => {
 
-// ===== Navigation =====
-const navbar = document.getElementById('navbar');
-const hamburger = document.getElementById('hamburger');
-const navMenu = document.getElementById('nav-menu');
-const navLinks = document.querySelectorAll('.nav-link');
-
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 100) {
-        navbar.classList.add('scrolled');
-    } else {
-        navbar.classList.remove('scrolled');
-    }
-});
-
-hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('active');
-    navMenu.classList.toggle('active');
-});
-
-navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-        hamburger.classList.remove('active');
-        navMenu.classList.remove('active');
-    });
-});
-
-// ===== Active Navigation Link =====
-window.addEventListener('scroll', () => {
-    let current = '';
-    const sections = document.querySelectorAll('section');
-    
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-        if (scrollY >= sectionTop - 200) {
-            current = section.getAttribute('id');
-        }
-    });
-
-    navLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href').slice(1) === current) {
-            link.classList.add('active');
-        }
-    });
-});
-
-// ===== Typing Effect =====
-const texts = [
-    'Statistical Analyst',
-    'Data Science',
-    'AI',
-    'Data Analyst',
-    'I love python !'
-];
-
-let textIndex = 0;
-let charIndex = 0;
-let isDeleting = false;
-let typingSpeed = 100;
-
-function typeText() {
-    const typingText = document.getElementById('typing-text');
-    const currentText = texts[textIndex];
-    
-    if (isDeleting) {
-        typingText.textContent = currentText.substring(0, charIndex - 1);
-        charIndex--;
-        typingSpeed = 50;
-    } else {
-        typingText.textContent = currentText.substring(0, charIndex + 1);
-        charIndex++;
-        typingSpeed = 100;
-    }
-    
-    if (!isDeleting && charIndex === currentText.length) {
-        isDeleting = true;
-        typingSpeed = 2000;
-    } else if (isDeleting && charIndex === 0) {
-        isDeleting = false;
-        textIndex = (textIndex + 1) % texts.length;
-        typingSpeed = 500;
-    }
-    
-    setTimeout(typeText, typingSpeed);
-}
-
-setTimeout(typeText, 1000);
-
-// ===== Scroll Animations (AOS) =====
-function animateOnScroll() {
-    const elements = document.querySelectorAll('[data-aos]');
-    
-    elements.forEach(element => {
-        const elementTop = element.getBoundingClientRect().top;
-        const elementBottom = element.getBoundingClientRect().bottom;
-        const isVisible = (elementTop < window.innerHeight - 100) && (elementBottom > 0);
-        
-        if (isVisible) {
-            element.classList.add('aos-animate');
-        }
-    });
-}
-
-window.addEventListener('scroll', animateOnScroll);
-window.addEventListener('load', animateOnScroll);
-
-// ===== Skills Animation =====
-function animateSkills() {
-    const skillBars = document.querySelectorAll('.skill-progress');
-    
-    skillBars.forEach(bar => {
-        const barTop = bar.getBoundingClientRect().top;
-        const isVisible = barTop < window.innerHeight - 100;
-        
-        if (isVisible && bar.style.width === '0px' || bar.style.width === '') {
-            const progress = bar.getAttribute('data-progress');
-            bar.style.width = progress + '%';
-        }
-    });
-}
-
-window.addEventListener('scroll', animateSkills);
-window.addEventListener('load', animateSkills);
-
-// ===== Smooth Scroll =====
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }
-    });
-});
-
-// ===== Contact Form =====
-const contactForm = document.getElementById('contact-form');
-const formStatus = document.getElementById('form-status');
-
-contactForm.addEventListener('submit', async function(e) {
-    e.preventDefault();
-    
-    const formData = new FormData(this);
-    const name = formData.get('name');
-    const email = formData.get('email');
-    const subject = formData.get('subject');
-    const message = formData.get('message');
-    
-    if (!name || !email || !subject || !message) {
-        formStatus.style.display = 'block';
-        formStatus.className = 'error';
-        formStatus.innerHTML = `
-            <i class="fas fa-exclamation-circle"></i> 
-            Veuillez remplir tous les champs du formulaire.
-        `;
-        return;
-    }
-    
-    formStatus.style.display = 'block';
-    formStatus.className = 'success';
-    formStatus.innerHTML = `
-        <i class="fas fa-spinner fa-spin"></i> 
-        Envoi en cours...
-    `;
-    
-    try {
-        const response = await fetch('/api/contact', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                name: name,
-                email: email,
-                subject: subject,
-                message: message
-            })
-        });
-        
-        const result = await response.json();
-        
-        if (response.ok && result.success) {
-            formStatus.className = 'success';
-            formStatus.innerHTML = `
-                <i class="fas fa-check-circle"></i> 
-                ${result.message}
-            `;
-            
-            contactForm.reset();
-            
-            setTimeout(() => {
-                formStatus.style.display = 'none';
-            }, 5000);
-        } else {
-            throw new Error(result.message || 'Erreur lors de l\'envoi');
-        }
-    } catch (error) {
-        formStatus.className = 'error';
-        formStatus.innerHTML = `
-            <i class="fas fa-exclamation-circle"></i> 
-            ${error.message || 'Erreur lors de l\'envoi du message. Veuillez réessayer.'}
-        `;
-    }
-});
-
-// ===== Particles Animation =====
-function createParticles() {
-    const heroParticles = document.querySelector('.hero-particles');
-    const particleCount = 30;
-    
-    for (let i = 0; i < particleCount; i++) {
-        const particle = document.createElement('div');
-        particle.className = 'particle';
-        particle.style.cssText = `
-            position: absolute;
-            width: ${Math.random() * 4 + 2}px;
-            height: ${Math.random() * 4 + 2}px;
-            background: rgba(0, 212, 255, ${Math.random() * 0.5 + 0.2});
-            border-radius: 50%;
-            left: ${Math.random() * 100}%;
-            top: ${Math.random() * 100}%;
-            animation: float ${Math.random() * 10 + 10}s ease-in-out infinite;
-            animation-delay: ${Math.random() * 5}s;
-        `;
-        heroParticles.appendChild(particle);
-    }
-}
-
-const floatKeyframes = `
-    @keyframes float {
-        0%, 100% {
-            transform: translate(0, 0) scale(1);
-            opacity: 0.3;
-        }
-        25% {
-            transform: translate(20px, -30px) scale(1.2);
-            opacity: 0.6;
-        }
-        50% {
-            transform: translate(-20px, -60px) scale(0.8);
-            opacity: 0.4;
-        }
-        75% {
-            transform: translate(30px, -30px) scale(1.1);
-            opacity: 0.5;
-        }
-    }
-`;
-
-const styleSheet = document.createElement('style');
-styleSheet.textContent = floatKeyframes;
-document.head.appendChild(styleSheet);
-
-createParticles();
-
-// ===== Project Card Click Effect =====
-const projectCards = document.querySelectorAll('.project-card');
-
-projectCards.forEach(card => {
-    card.addEventListener('click', function() {
-        const projectTitle = this.querySelector('h3').textContent;
-        console.log(`Project clicked: ${projectTitle}`);
-        
-        this.style.transform = 'scale(0.98)';
+    // ===== Preloader =====
+    const preloader = document.querySelector('.preloader');
+    window.addEventListener('load', () => {
         setTimeout(() => {
-            this.style.transform = '';
-        }, 200);
+            preloader.classList.add('hidden');
+        }, 300); // Small delay to ensure everything is loaded
     });
-});
 
-// ===== Parallax Effect =====
-window.addEventListener('scroll', () => {
-    const scrolled = window.pageYOffset;
-    const heroImage = document.querySelector('.hero-image');
-    
-    if (heroImage) {
-        heroImage.style.transform = `translateY(${scrolled * 0.3}px)`;
-    }
-});
+    // ===== Progress Bar =====
+    const progressBar = document.getElementById('progress-bar');
+    window.addEventListener('scroll', () => {
+        const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = (winScroll / height) * 100;
+        progressBar.style.width = scrolled + '%';
+    });
 
+    // ===== Sticky & Mobile Navigation =====
+    const navbar = document.getElementById('navbar');
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('nav-menu');
+    const navLinks = document.querySelectorAll('.nav-link');
 
-// ===== Intersection Observer for Advanced Animations =====
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -100px 0px'
-};
-
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('aos-animate');
+    // "scrolled" effect
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
         }
     });
-}, observerOptions);
 
-document.querySelectorAll('[data-aos]').forEach(el => {
-    observer.observe(el);
-});
+    // Hamburger Menu
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        navMenu.classList.toggle('active');
+        document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
+    });
 
-// ===== Easter Egg: Console Message =====
-console.log('%c👋 Bonjour!', 'font-size: 24px; color: #00d4ff; font-weight: bold;');
-console.log('%cVous êtes curieux, c\'est une bonne qualité pour un développeur!', 'font-size: 14px; color: #8892b0;');
-console.log('%cSi vous souhaitez collaborer, contactez-moi: fred.njomani@ensea.edu.ci', 'font-size: 14px; color: #00d4ff;');
+    // Close menu when a link is clicked
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+    });
 
-// ===== Performance Optimization: Lazy Loading =====
-if ('IntersectionObserver' in window) {
-    const imageObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const img = entry.target;
-                if (img.dataset.src) {
-                    img.src = img.dataset.src;
-                    img.classList.add('loaded');
-                    observer.unobserve(img);
-                }
+    // ===== Active Navigation Link =====
+    window.addEventListener('scroll', () => {
+        let current = '';
+        const sections = document.querySelectorAll('section');
+        
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            if (scrollY >= sectionTop - 150) { // 150px offset
+                current = section.getAttribute('id');
+            }
+        });
+
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href').slice(1) === current) {
+                link.classList.add('active');
             }
         });
     });
 
-    document.querySelectorAll('img[data-src]').forEach(img => {
-        imageObserver.observe(img);
-    });
-}
+    // ===== Typing Effect =====
+    const typingTextEl = document.getElementById('typing-text');
+    if (typingTextEl) {
+        // Translated to English
+        const texts = [
+            'Statistical Analyst',
+            'Data Science',
+            'Machine Learning',
+            'Deep Learning',
+            'Data Analyst',
+            'Python Developer',
+            
+        ];
+        let textIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
 
-// ===== Add Loading Animation =====
-window.addEventListener('load', () => {
-    document.body.classList.add('loaded');
-    
-    setTimeout(() => {
-        const hero = document.querySelector('.hero');
-        if (hero) {
-            hero.classList.add('visible');
+        function typeText() {
+            const currentText = texts[textIndex];
+            let typeSpeed = 100;
+
+            if (isDeleting) {
+                typingTextEl.textContent = currentText.substring(0, charIndex - 1);
+                charIndex--;
+                typeSpeed = 50;
+            } else {
+                typingTextEl.textContent = currentText.substring(0, charIndex + 1);
+                charIndex++;
+                typeSpeed = 100;
+            }
+            
+            if (!isDeleting && charIndex === currentText.length) {
+                isDeleting = true;
+                typeSpeed = 2000; // Pause at the end
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                textIndex = (textIndex + 1) % texts.length;
+                typeSpeed = 500; // Pause before new word
+            }
+            
+            setTimeout(typeText, typeSpeed);
         }
-    }, 100);
+        setTimeout(typeText, 1000); // Initial delay
+    }
+
+    // ===== Animations (AOS) =====
+    // Initialize AOS library
+    AOS.init({
+        duration: 800,  // Animation duration
+        once: true,     // Animation happens only once
+        offset: 100,    // Offset before triggering
+        easing: 'ease-in-out-cubic',
+    });
+
+    // ===== Skill Bar Animation =====
+    // Use Intersection Observer for better performance
+    const skillObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const bar = entry.target;
+                const progress = bar.getAttribute('data-progress');
+                bar.style.width = progress + '%';
+                observer.unobserve(bar); // Animate only once
+            }
+        });
+    }, { threshold: 0.5 }); // Trigger at 50% visibility
+
+    document.querySelectorAll('.skill-progress').forEach(bar => {
+        skillObserver.observe(bar);
+    });
+
+    // ===== Project Filters =====
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const projectCards = document.querySelectorAll('.project-card');
+
+    filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            // Manage active class
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+
+            const filter = button.getAttribute('data-filter');
+
+            projectCards.forEach(card => {
+                const category = card.getAttribute('data-category');
+                
+                // Hide first for animation
+                card.classList.add('hide');
+
+                setTimeout(() => {
+                    if (filter === 'all' || filter === category) {
+                        card.classList.remove('hide');
+                        card.classList.add('show');
+                    } else {
+                        card.classList.remove('show');
+                    }
+                }, 300); // Must match CSS transition
+            });
+        });
+    });
+
+
+    // ===== Theme Toggle (Light/Dark Mode) =====
+    const themeToggle = document.getElementById('theme-toggle');
+    const docElement = document.documentElement;
+    
+    // Function to apply the theme
+    function setTheme(theme) {
+        docElement.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
+    }
+
+    // Check saved theme on load, default to 'light'
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    setTheme(savedTheme);
+
+    // Handle button click
+    themeToggle.addEventListener('click', () => {
+        const currentTheme = docElement.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        setTheme(newTheme);
+    });
+
+
+    // ===== Custom Cursor JavaScript Removed =====
+
+
+    // ===== Contact Form =====
+    const contactForm = document.getElementById('contact-form');
+    const formStatus = document.getElementById('form-status');
+
+    if (contactForm) {
+        contactForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const data = {
+                name: formData.get('name'),
+                email: formData.get('email'),
+                subject: formData.get('subject'),
+                message: formData.get('message')
+            };
+            
+            // Simple validation
+            if (!data.name || !data.email || !data.subject || !data.message) {
+                formStatus.style.display = 'block';
+                formStatus.className = 'error';
+                // Translated message
+                formStatus.innerHTML = `<i class="fas fa-exclamation-circle"></i> Please fill in all fields.`;
+                return;
+            }
+            
+            formStatus.style.display = 'block';
+            formStatus.className = 'success'; // Use 'success' for spinner style
+            // Translated message
+            formStatus.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Sending...`;
+            
+            try {
+                const response = await fetch('/api/contact', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+                
+                const result = await response.json();
+                
+                if (response.ok && result.success) {
+                    formStatus.className = 'success';
+                    formStatus.innerHTML = `<i class="fas fa-check-circle"></i> ${result.message}`;
+                    contactForm.reset();
+                } else {
+                    throw new Error(result.message || 'Error sending message');
+                }
+            } catch (error) {
+                formStatus.className = 'error';
+                // Translated message
+                formStatus.innerHTML = `<i class="fas fa-exclamation-circle"></i> ${error.message || 'Error. Please try again.'}`;
+            }
+        });
+    }
+
+    // ===== Dynamic Footer Year =====
+    const footerYear = document.getElementById('footer-year');
+    if (footerYear) {
+        footerYear.textContent = new Date().getFullYear();
+    }
+
+    // ===== Console Easter Egg (Translated) =====
+    console.log('%c👋 Hello!', 'font-size: 24px; color: #64FFDA; font-family: "Orbitron", sans-serif; font-weight: bold;');
+    console.log('%cCurious? That\'s a great quality for a developer!', 'font-size: 14px; color: #94A3B8; font-family: "Inter", sans-serif;');
+    console.log('%cIf you\'d like to collaborate, reach out: fred.njomani@ensea.edu.ci', 'font-size: 14px; color: #38BDF8;');
+
 });
 
-// ===== Dynamic Year for Footer =====
-const currentYear = new Date().getFullYear();
-const footerYear = document.querySelector('.footer-content p');
-if (footerYear) {
-    footerYear.innerHTML = footerYear.innerHTML.replace('2025', currentYear);
-}
