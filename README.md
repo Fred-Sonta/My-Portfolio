@@ -23,8 +23,7 @@
 
 ## 📞 Contact
 **Yan Fred NJOMANI SONTA**
-- Email: fred.njomani@ensea.edu.ci
-- Phone: +225 01 53 73 60 70
+- Email: njomanifred@gmail.com
 - LinkedIn: https://bit.ly/46DIB7P
 - GitHub: https://github.com/Fred-Sonta
 
