@@ -1,27 +1,46 @@
 <!DOCTYPE html>
-<html lang="en">
+<!-- Langue réglée sur 'en' et thème par défaut sur 'light' -->
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Portfolio of Yan Fred NJOMANI SONTA - Statistical Analyst & Data Scientist">
     <title>Yan Fred NJOMANI SONTA | Portfolio</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Fonts: Orbitron (geometric) and Inter (readable) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Orbitron:wght@500;700;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Main stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- CSS for AOS (Animate On Scroll) library -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 </head>
 <body>
-    <!-- Progress Bar -->
+
+    <!-- Preloader for loading animations -->
+    <div class="preloader">
+        <div class="preloader-logo">YF</div>
+        <div class="preloader-spinner"></div>
+    </div>
+
+    <!-- Custom cursors removed as requested -->
+
+    <!-- Progress bar at the top of the page -->
     <div id="progress-bar"></div>
 
-    <!-- Navigation -->
+    <!-- Sticky Navigation -->
     <nav id="navbar">
         <div class="nav-container">
-            <div class="nav-logo">
+            <a href="#home" class="nav-logo" aria-label="Back to home">
                 <span class="logo-text">YF</span>
                 <span class="logo-name">Yan Fred</span>
-            </div>
+            </a>
             <ul class="nav-menu" id="nav-menu">
                 <li><a href="#home" class="nav-link active">Home</a></li>
                 <li><a href="#about" class="nav-link">About</a></li>
@@ -30,31 +49,38 @@
                 <li><a href="#experience" class="nav-link">Experience</a></li>
                 <li><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
-            <div class="hamburger" id="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
+            <div class="nav-controls">
+                <!-- Theme toggle (light/dark mode) -->
+                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+                    <i class="fas fa-sun theme-icon-sun"></i>
+                    <i class="fas fa-moon theme-icon-moon"></i>
+                </button>
+                <!-- Hamburger menu for mobile -->
+                <div class="hamburger" id="hamburger" aria-label="Open menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
     <section id="home" class="hero">
-        <div class="hero-particles"></div>
         <div class="hero-content">
             <div class="hero-text">
                 <h1 class="hero-title">
-                    <span class="greeting">Hello, I'm</span>
-                    <span class="name">Yan Fred NJOMANI SONTA</span>
+                    <span class="greeting" data-aos="fade-down" data-aos-delay="100">Hello, I'm</span>
+                    <span class="name" data-aos="fade-down" data-aos-delay="200">Yan Fred NJOMANI SONTA</span>
                 </h1>
-                <div class="typing-container">
+                <div class="typing-container" data-aos="fade-down" data-aos-delay="300">
                     <span class="typing-text" id="typing-text"></span>
-                    <span class="cursor">|</span>
+                    <span class="cursor-typing">|</span>
                 </div>
-                <p class="hero-description">
-                    Passionate student in statistics and data science, transforming data into innovative insights
+                <p class="hero-description" data-aos="fade-down" data-aos-delay="400">
+                    Passionate student in statistics and data science, transforming data into innovative insights.
                 </p>
-                <div class="hero-buttons">
+                <div class="hero-buttons" data-aos="fade-up" data-aos-delay="500">
                     <a href="#projects" class="btn btn-primary">
                         <i class="fas fa-briefcase"></i> My Projects
                     </a>
@@ -62,7 +88,7 @@
                         <i class="fas fa-envelope"></i> Contact Me
                     </a>
                 </div>
-                <div class="social-links">
+                <div class="social-links" data-aos="fade-up" data-aos-delay="600">
                     <a href="https://bit.ly/46DIB7P" target="_blank" class="social-link" aria-label="LinkedIn">
                         <i class="fab fa-linkedin-in"></i>
                     </a>
@@ -74,10 +100,13 @@
                     </a>
                 </div>
             </div>
-            <div class="hero-image">
+            <div class="hero-image" data-aos="fade-left" data-aos-delay="400">
                 <div class="image-container">
-                    <div class="glow-effect"></div>
+                    <!-- Placeholder image. Replace with your 'profile.jpg' -->
                     <img src="profile.jpg" alt="Yan Fred NJOMANI SONTA" class="profile-image">
+                    <div class="tech-icon icon-1"><i class="fas fa-database"></i></div>
+                    <div class="tech-icon icon-2"><i class="fas fa-chart-line"></i></div>
+                    <div class="tech-icon icon-3"><i class="fab fa-python"></i></div>
                 </div>
             </div>
         </div>
@@ -87,7 +116,7 @@
         </div>
     </section>
 
-    <!-- About Section -->
+    <!-- About Section (Asymmetrical layout) -->
     <section id="about" class="about section">
         <div class="container">
             <h2 class="section-title" data-aos="fade-up">
@@ -95,26 +124,26 @@
             </h2>
             <div class="about-content">
                 <div class="about-text" data-aos="fade-right">
-                    <h3>Profile</h3>
+                    <h3>My Profile</h3>
                     <p>
                         An excellent student passionate about statistics and mathematics, I see data manipulation as a tool for impact and innovation. Guided by rigorous training and a continuous thirst for learning, I combine analytical rigor with an open mind to progress and inspire those around me.
                     </p>
                     <div class="about-stats">
-                        <div class="stat-item">
+                        <div class="stat-item" data-aos="fade-right" data-aos-delay="100">
                             <i class="fas fa-award"></i>
                             <div>
                                 <h4>Statistical Analyst Student</h4>
-                                <p>National School of Statistics and Applied Economics (ENSEA, Abidjan)</p>
+                                <p>ENSEA, Abidjan (National School of Statistics and Applied Economics)</p>
                             </div>
                         </div>
-                        <div class="stat-item">
+                        <div class="stat-item" data-aos="fade-right" data-aos-delay="200">
                             <i class="fas fa-globe"></i>
                             <div>
                                 <h4>Languages</h4>
                                 <p>French (Native), English (B2)</p>
                             </div>
                         </div>
-                        <div class="stat-item">
+                        <div class="stat-item" data-aos="fade-right" data-aos-delay="300">
                             <i class="fas fa-flag"></i>
                             <div>
                                 <h4>Nationality</h4>
@@ -123,18 +152,19 @@
                         </div>
                     </div>
                 </div>
-                <div class="about-timeline" data-aos="fade-left">
+                <!-- Education timeline (offset for asymmetry) -->
+                <div class="about-timeline" data-aos="fade-left" data-aos-delay="200">
                     <h3>Education</h3>
                     <div class="timeline">
                         <div class="timeline-item">
                             <div class="timeline-dot"></div>
                             <div class="timeline-content">
                                 <span class="timeline-date">2023 – 2026</span>
-                                <h4>National School of Statistics and Applied Economics (ENSEA)</h4>
+                                <h4>National School of Statistics (ENSEA)</h4>
                                 <p class="timeline-location"><i class="fas fa-map-marker-alt"></i> Ivory Coast</p>
                                 <p>Statistical Analyst Program, Data Science Specialization (Bachelor +3, ongoing)</p>
                                 <div class="timeline-badge">
-                                    <i class="fas fa-trophy"></i> Excellence scholarship through national competitive exam
+                                    <i class="fas fa-trophy"></i> Excellence scholarship via competitive exam
                                 </div>
                             </div>
                         </div>
@@ -166,7 +196,7 @@
     <section id="skills" class="skills section">
         <div class="container">
             <h2 class="section-title" data-aos="fade-up">
-                <span class="title-number">02.</span> Skills
+                <span class="title-number">02.</span> Technical Skills
             </h2>
             <div class="skills-container">
                 <div class="skill-category" data-aos="fade-up" data-aos-delay="100">
@@ -176,19 +206,31 @@
                     </div>
                     <div class="skill-list">
                         <div class="skill-item">
-                            <span>Linear econometrics and time series</span>
+                            <div class="skill-info">
+                                <span>Linear econometrics and time series</span>
+                                <span>90%</span>
+                            </div>
                             <div class="skill-bar"><div class="skill-progress" data-progress="90"></div></div>
                         </div>
                         <div class="skill-item">
-                            <span>Descriptive and inferential statistics</span>
+                             <div class="skill-info">
+                                <span>Descriptive and inferential statistics</span>
+                                <span>95%</span>
+                            </div>
                             <div class="skill-bar"><div class="skill-progress" data-progress="95"></div></div>
                         </div>
                         <div class="skill-item">
-                            <span>Hypothesis testing</span>
+                            <div class="skill-info">
+                                <span>Hypothesis testing</span>
+                                <span>90%</span>
+                            </div>
                             <div class="skill-bar"><div class="skill-progress" data-progress="90"></div></div>
                         </div>
                         <div class="skill-item">
-                            <span>PCA, MCA, Classification</span>
+                            <div class="skill-info">
+                                <span>PCA, MCA, Classification</span>
+                                <span>85%</span>
+                            </div>
                             <div class="skill-bar"><div class="skill-progress" data-progress="85"></div></div>
                         </div>
                     </div>
@@ -201,19 +243,31 @@
                     </div>
                     <div class="skill-list">
                         <div class="skill-item">
-                            <span>Machine Learning</span>
+                            <div class="skill-info">
+                                <span>Machine Learning</span>
+                                <span>90%</span>
+                            </div>
                             <div class="skill-bar"><div class="skill-progress" data-progress="90"></div></div>
                         </div>
                         <div class="skill-item">
-                            <span>Deep Learning</span>
+                            <div class="skill-info">
+                                <span>Deep Learning</span>
+                                <span>80%</span>
+                            </div>
                             <div class="skill-bar"><div class="skill-progress" data-progress="80"></div></div>
                         </div>
                         <div class="skill-item">
-                            <span>Cloud Computing & Big Data</span>
+                            <div class="skill-info">
+                                <span>Cloud Computing & Big Data</span>
+                                <span>75%</span>
+                            </div>
                             <div class="skill-bar"><div class="skill-progress" data-progress="75"></div></div>
                         </div>
                         <div class="skill-item">
-                            <span>Computer Vision & Frameworks (Flask/Django)</span>
+                            <div class="skill-info">
+                                <span>Computer Vision & Frameworks</span>
+                                <span>80%</span>
+                            </div>
                             <div class="skill-bar"><div class="skill-progress" data-progress="80"></div></div>
                         </div>
                     </div>
@@ -226,19 +280,31 @@
                     </div>
                     <div class="skill-list">
                         <div class="skill-item">
-                            <span>Power BI</span>
+                            <div class="skill-info">
+                                <span>Power BI</span>
+                                <span>88%</span>
+                            </div>
                             <div class="skill-bar"><div class="skill-progress" data-progress="88"></div></div>
                         </div>
                         <div class="skill-item">
-                            <span>Excel / VBA (advanced)</span>
+                            <div class="skill-info">
+                                <span>Excel / VBA (advanced)</span>
+                                <span>92%</span>
+                            </div>
                             <div class="skill-bar"><div class="skill-progress" data-progress="92"></div></div>
                         </div>
                         <div class="skill-item">
-                            <span>RShiny</span>
+                            <div class="skill-info">
+                                <span>RShiny</span>
+                                <span>80%</span>
+                            </div>
                             <div class="skill-bar"><div class="skill-progress" data-progress="80"></div></div>
                         </div>
                         <div class="skill-item">
-                            <span>Tableau</span>
+                            <div class="skill-info">
+                                <span>Tableau</span>
+                                <span>75%</span>
+                            </div>
                             <div class="skill-bar"><div class="skill-progress" data-progress="75"></div></div>
                         </div>
                     </div>
@@ -251,24 +317,32 @@
                     </div>
                     <div class="skill-list">
                         <div class="skill-item">
-                            <span>Python (advanced)</span>
+                            <div class="skill-info">
+                                <span>Python (advanced)</span>
+                                <span>93%</span>
+                            </div>
                             <div class="skill-bar"><div class="skill-progress" data-progress="93"></div></div>
                         </div>
                         <div class="skill-item">
-                            <span>R / RStudio</span>
+                            <div class="skill-info">
+                                <span>R / RStudio</span>
+                                <span>88%</span>
+                            </div>
                             <div class="skill-bar"><div class="skill-progress" data-progress="88"></div></div>
                         </div>
                         <div class="skill-item">
-                            <span>SQL / PostgreSQL</span>
+                            <div class="skill-info">
+                                <span>SQL / PostgreSQL</span>
+                                <span>85%</span>
+                            </div>
                             <div class="skill-bar"><div class="skill-progress" data-progress="85"></div></div>
                         </div>
                         <div class="skill-item">
-                            <span>HTML, CSS, JavaScript</span>
+                            <div class="skill-info">
+                                <span>HTML, CSS, JavaScript</span>
+                                <span>82%</span>
+                            </div>
                             <div class="skill-bar"><div class="skill-progress" data-progress="82"></div></div>
-                        </div>
-                        <div class="skill-item">
-                            <span>Stata, SPSS, Matlab, LaTeX</span>
-                            <div class="skill-bar"><div class="skill-progress" data-progress="80"></div></div>
                         </div>
                     </div>
                 </div>
@@ -277,244 +351,205 @@
             <div class="certifications" data-aos="fade-up">
                 <h3><i class="fas fa-certificate"></i> Certifications</h3>
                 <div class="cert-list">
-                    <div class="cert-item">
-                        <i class="fab fa-python"></i>
-                        <span>Python for Data Science – IBM Cognitive Class 2025</span>
-                    </div>
-                    <div class="cert-item">
-                        <i class="fab fa-r-project"></i>
-                        <span>R for Data Science – IBM Cognitive Class 2025</span>
-                    </div>
-                    <div class="cert-item">
-                        <i class="fab fa-python"></i>
-                        <span>Bootcamp OpenCV/Deep learning - OpenCV Class 2025</span>
-                    </div>
-                    <div class="cert-item">
-                        <i class="fab fa-python"></i>
-                        <span>Introduction to Deeplearning - Kaggle 2025</span>
-                    </div>
+                    <div class="cert-item"><i class="fab fa-python"></i><span>Python for Data Science – IBM Cognitive Class</span></div>
+                    <div class="cert-item"><i class="fab fa-r-project"></i><span>R for Data Science – IBM Cognitive Class</span></div>
+                    <div class="cert-item"><i class="fab fa-python"></i><span>Bootcamp OpenCV/Deep learning - OpenCV Class</span></div>
+                    <div class="cert-item"><i class="fas fa-brain"></i><span>Introduction to Deeplearning - Kaggle</span></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Projects Section -->
+    <!-- Projects Section with Filters -->
     <section id="projects" class="projects section">
         <div class="container">
             <h2 class="section-title" data-aos="fade-up">
                 <span class="title-number">03.</span> Projects
             </h2>
+            
+            <!-- Project filters -->
+            <div class="project-filters" data-aos="fade-up" data-aos-delay="100">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="web">Web & App</button>
+                <button class="filter-btn" data-filter="ml">Machine Learning</button>
+                <button class="filter-btn" data-filter="dataviz">DataViz & Analysis</button>
+            </div>
+
             <div class="projects-grid">
-                <div class="project-card" data-aos="zoom-in" data-aos-delay="100">
-                    <div class="project-icon">
-                        <i class="fas fa-laptop-code"></i>
+                <!-- Added data-category for filters -->
+                <div class="project-card" data-category="web" data-aos="fade-up" data-aos-delay="100">
+                    <div class="project-header">
+                        <i class="fas fa-laptop-code project-icon"></i>
+                        <div class="project-links">
+                            <a href="https://github.com/Fred-Sonta/Mon-application-Flask" target="_blank" aria-label="See code on GitHub"><i class="fab fa-github"></i></a>
+                        </div>
                     </div>
-                    <h3><a href="https://github.com/Fred-Sonta/Mon-application-Flask">Financial Management Web Application with AI</a></h3>
+                    <h3>Financial Management Web Application with AI</h3>
                     <p>Full-stack financial assistant developed with Flask and generative AI for budget management, including dashboards and intelligent recommendations.</p>
                     <div class="project-tags">
-                        <span>Flask</span>
-                        <span>Python</span>
-                        <span>AI</span>
-                        <span>Full-Stack</span>
-                    </div>
-                    <div class="project-overlay">
-                        <i class="fas fa-search-plus"></i>
+                        <span>Flask</span><span>Python</span><span>AI</span><span>Full-Stack</span>
                     </div>
                 </div>
 
-                <div class="project-card" data-aos="zoom-in" data-aos-delay="100">
-                    <div class="project-icon">
-                        <i class="fas fa-laptop-code"></i>
+                <div class="project-card" data-category="ml" data-aos="fade-up" data-aos-delay="200">
+                    <div class="project-header">
+                        <i class="fas fa-brain project-icon"></i>
+                        <div class="project-links">
+                            <a href="https://github.com/Fred-Sonta/RNN-and-Sequentials-modelisation" target="_blank" aria-label="See code on GitHub"><i class="fab fa-github"></i></a>
+                        </div>
                     </div>
-                    <h3><a href="https://github.com/Fred-Sonta/RNN-and-Sequentials-modelisation">Sentiment Analysis with RNN/LSTM/GRU</a></h3>
-                    <p>Comparative analysis of three RNN architectures (SimpleRNN, LSTM, GRU) for binary sentiment classification on IMDB movie reviews, with performance visualization and accuracy benchmarking.</p>
+                    <h3>Sentiment Analysis (RNN/LSTM/GRU)</h3>
+                    <p>Comparative analysis of three RNN architectures (SimpleRNN, LSTM, GRU) for binary sentiment classification on IMDB movie reviews.</p>
                     <div class="project-tags">
-                        <span>Deeplearning</span>
-                        <span>Tensorflow/Keras</span>
-                        <span>RNN</span>
-                        <span>Matplotlib</span>
-                    </div>
-                    <div class="project-overlay">
-                        <i class="fas fa-search-plus"></i>
+                        <span>Deeplearning</span><span>Tensorflow</span><span>RNN</span>
                     </div>
                 </div>
                 
-                <div class="project-card" data-aos="zoom-in" data-aos-delay="200">
-                    <div class="project-icon">
-                        <i class="fas fa-brain"></i>
+                <div class="project-card" data-category="ml" data-aos="fade-up" data-aos-delay="300">
+                     <div class="project-header">
+                        <i class="fas fa-user-slash project-icon"></i>
+                        <div class="project-links">
+                            <a href="https://github.com/Fred-Sonta/Churn-Machine-Learning" target="_blank" aria-label="See code on GitHub"><i class="fab fa-github"></i></a>
+                        </div>
                     </div>
-                    <h3><a href="https://github.com/Fred-Sonta/Churn-Machine-Learning">Churn Prediction with Machine Learning</a></h3>
+                    <h3>Churn Prediction (Machine Learning)</h3>
                     <p>Development of a predictive model to anticipate customer churn rate using advanced machine learning algorithms.</p>
                     <div class="project-tags">
-                        <span>Python</span>
-                        <span>Scikit-learn</span>
-                        <span>ML</span>
-                    </div>
-                    <div class="project-overlay">
-                        <i class="fas fa-search-plus"></i>
+                        <span>Python</span><span>Scikit-learn</span><span>ML</span>
                     </div>
                 </div>
 
-                <div class="project-card" data-aos="zoom-in" data-aos-delay="300">
-                    <div class="project-icon">
-                        <i class="fas fa-project-diagram"></i>
+                <div class="project-card" data-category="dataviz" data-aos="fade-up" data-aos-delay="100">
+                    <div class="project-header">
+                        <i class="fas fa-project-diagram project-icon"></i>
+                        <div class="project-links">
+                            <a href="https://github.com/Fred-Sonta/ADD-avec-R" target="_blank" aria-label="See code on GitHub"><i class="fab fa-github"></i></a>
+                        </div>
                     </div>
-                    <h3><a href="https://github.com/Fred-Sonta/ADD-avec-R">Multidimensional Analysis with RStudio</a></h3>
-                    <p>Principal Component Analysis and Multiple Correspondence Analysis to reduce dimensionality and visualize complex data.</p>
+                    <h3>Multidimensional Analysis with RStudio</h3>
+                    <p>Principal Component Analysis (PCA) and Multiple Correspondence Analysis (MCA) to reduce dimensionality and visualize data.</p>
                     <div class="project-tags">
-                        <span>Python</span>
-                        <span>PCA</span>
-                        <span>MCA</span>
-                        <span>Pandas</span>
-                    </div>
-                    <div class="project-overlay">
-                        <i class="fas fa-search-plus"></i>
+                        <span>R</span><span>PCA</span><span>MCA</span><span>Analysis</span>
                     </div>
                 </div>
 
-                <div class="project-card" data-aos="zoom-in" data-aos-delay="400">
-                    <div class="project-icon">
-                        <i class="fas fa-chart-line"></i>
+                <div class="project-card" data-category="dataviz" data-aos="fade-up" data-aos-delay="200">
+                    <div class="project-header">
+                        <i class="fas fa-chart-line project-icon"></i>
+                        <div class="project-links">
+                            <a href="https://github.com/Fred-Sonta/Projet-Econometrie-Python" target="_blank" aria-label="See code on GitHub"><i class="fab fa-github"></i></a>
+                        </div>
                     </div>
-                    <h3><a href="https://github.com/Fred-Sonta/Projet-Econometrie-Python">Econometric Analysis Project</a></h3>
-                    <p>In-depth econometric study using advanced regression models and time series analysis to understand economic dynamics.</p>
+                    <h3>Econometric Analysis Project</h3>
+                    <p>In-depth econometric study using advanced regression models and time series analysis to understand dynamics.</p>
                     <div class="project-tags">
-                        <span>Econometrics</span>
-                        <span>Stata</span>
-                        <span>R</span>
-                    </div>
-                    <div class="project-overlay">
-                        <i class="fas fa-search-plus"></i>
+                        <span>Econometrics</span><span>Stata</span><span>R</span>
                     </div>
                 </div>
 
-                <div class="project-card" data-aos="zoom-in" data-aos-delay="500">
-                    <div class="project-icon">
-                        <i class="fas fa-tasks"></i>
+                <div class="project-card" data-category="web" data-aos="fade-up" data-aos-delay="300">
+                    <div class="project-header">
+                        <i class="fas fa-tasks project-icon"></i>
+                        <div class="project-links">
+                            <!-- No GitHub link provided in original -->
+                        </div>
                     </div>
                     <h3>VBA Excel Task Tracking Application</h3>
                     <p>Development of a complete task management and tracking application with intuitive user interface in VBA Excel.</p>
                     <div class="project-tags">
-                        <span>VBA</span>
-                        <span>Excel</span>
-                        <span>Automation</span>
-                    </div>
-                    <div class="project-overlay">
-                        <i class="fas fa-search-plus"></i>
+                        <span>VBA</span><span>Excel</span><span>Automation</span>
                     </div>
                 </div>
 
-                <div class="project-card" data-aos="zoom-in" data-aos-delay="600">
-                    <div class="project-icon">
-                        <i class="fas fa-seedling"></i>
+                <div class="project-card" data-category="dataviz" data-aos="fade-up" data-aos-delay="100">
+                    <div class="project-header">
+                        <i class="fas fa-seedling project-icon"></i>
+                        <div class="project-links">
+                           <!-- No GitHub link provided in original -->
+                        </div>
                     </div>
                     <h3>PowerBI Dashboard - Agricultural Plantation</h3>
                     <p>Interactive dashboard for agricultural plantation performance analysis with advanced visualizations and real-time KPIs.</p>
                     <div class="project-tags">
-                        <span>Power BI</span>
-                        <span>Excel</span>
-                        <span>Dashboard</span>
-                    </div>
-                    <div class="project-overlay">
-                        <i class="fas fa-search-plus"></i>
+                        <span>Power BI</span><span>Excel</span><span>Dashboard</span>
                     </div>
                 </div>
 
-                <div class="project-card" data-aos="zoom-in" data-aos-delay="800">
-                    <div class="project-icon">
-                        <i class="fas fa-globe-africa"></i>
+                <div class="project-card" data-category="dataviz" data-aos="fade-up" data-aos-delay="200">
+                    <div class="project-header">
+                        <i class="fas fa-globe-africa project-icon"></i>
+                        <div class="project-links">
+                            <!-- No GitHub link provided in original -->
+                        </div>
                     </div>
                     <h3>Sub-Saharan Africa Trade Analysis</h3>
                     <p>In-depth statistical and economic analysis report on trade in Sub-Saharan African countries (ENSEA end-of-year project).</p>
                     <div class="project-tags">
-                        <span>Statistics</span>
-                        <span>Economics</span>
-                        <span>R</span>
-                        <span>ENSEA</span>
-                    </div>
-                    <div class="project-overlay">
-                        <i class="fas fa-search-plus"></i>
+                        <span>Statistics</span><span>Economics</span><span>R</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Experience Section -->
+    <!-- Experience Section (Timeline) -->
     <section id="experience" class="experience section">
         <div class="container">
             <h2 class="section-title" data-aos="fade-up">
                 <span class="title-number">04.</span> Experience
             </h2>
             
-            <div class="experience-container">
+            <div class="experience-timeline">
+                <!-- Internship -->
                 <div class="experience-card" data-aos="fade-right">
                     <div class="exp-header">
-                        <i class="fas fa-briefcase"></i>
+                        <i class="fas fa-briefcase exp-icon"></i>
                         <div>
                             <h3>Statistical Studies Assistant (Intern)</h3>
                             <h4>Directorate of Studies, Strategy, Planning and Statistics (DESPS)</h4>
                             <p class="exp-location"><i class="fas fa-map-marker-alt"></i> Abidjan, Ivory Coast</p>
-                            <p class="exp-date"><i class="far fa-calendar"></i> August – September 2025</p>
+                            <p class="exp-date"><i class="far fa-calendar-alt"></i> August – Sept 2025</p>
                         </div>
                     </div>
                     <ul class="exp-details">
-                        <li>Educational data analysis with Excel and Python to produce sectoral statistics</li>
-                        <li>Support for strategic decision-making for over 5 educational projects</li>
-                        <li>Development of collaborative and analytical skills in a professional environment</li>
+                        <li>Educational data analysis with Excel and Python to produce sectoral statistics.</li>
+                        <li>Support for strategic decision-making for over 5 educational projects.</li>
+                        <li>Development of collaborative and analytical skills in a professional environment.</li>
                     </ul>
                 </div>
 
+                <!-- Extracurricular Experience -->
                 <h3 class="subsection-title" data-aos="fade-up">Extracurricular Experience</h3>
 
                 <div class="experience-card" data-aos="fade-left">
                     <div class="exp-header">
-                        <i class="fas fa-users"></i>
+                        <i class="fas fa-users exp-icon"></i>
                         <div>
                             <h3>Marketing and Communication Director</h3>
                             <h4>ENSEA Junior Services (EJS)</h4>
                             <p class="exp-location"><i class="fas fa-map-marker-alt"></i> ENSEA, Abidjan</p>
-                            <p class="exp-date"><i class="far fa-calendar"></i> 2025 – 2026</p>
+                            <p class="exp-date"><i class="far fa-calendar-alt"></i> 2025 – 2026</p>
                         </div>
                     </div>
                     <ul class="exp-details">
-                        <li>Design and deployment of targeted communication strategy with LinkedIn campaigns</li>
-                        <li>Increased visibility of Junior Enterprise with over 5 partner companies</li>
-                        <li>Brand image management and digital communication development</li>
+                        <li>Design and deployment of targeted communication strategy with LinkedIn campaigns.</li>
+                        <li>Increased visibility of Junior Enterprise with over 5 partner companies.</li>
                     </ul>
                 </div>
 
                 <div class="experience-card" data-aos="fade-right">
                     <div class="exp-header">
-                        <i class="fas fa-database"></i>
+                        <i class="fas fa-database exp-icon"></i>
                         <div>
                             <h3>General Secretary</h3>
                             <h4>ENSEA Data Science Club (EDSC)</h4>
                             <p class="exp-location"><i class="fas fa-map-marker-alt"></i> ENSEA, Abidjan</p>
-                            <p class="exp-date"><i class="far fa-calendar"></i> 2025 – 2026</p>
+                            <p class="exp-date"><i class="far fa-calendar-alt"></i> 2025 – 2026</p>
                         </div>
                     </div>
                     <ul class="exp-details">
-                        <li>Coordination of workshops and conferences (50+ participants) on Python and Machine Learning</li>
-                        <li>Management of student predictive analytics projects</li>
-                        <li>Improvement of participation rate and member engagement</li>
-                    </ul>
-                </div>
-
-                <div class="experience-card" data-aos="fade-left">
-                    <div class="exp-header">
-                        <i class="fas fa-chalkboard-teacher"></i>
-                        <div>
-                            <h3>Private Mathematics Tutor</h3>
-                            <h4>Tutoring Services</h4>
-                            <p class="exp-location"><i class="fas fa-map-marker-alt"></i> University of Dschang, Cameroon</p>
-                            <p class="exp-date"><i class="far fa-calendar"></i> 2021 – 2023</p>
-                        </div>
-                    </div>
-                    <ul class="exp-details">
-                        <li>Teaching mathematics to students of different levels</li>
-                        <li>Development of adapted teaching methods</li>
-                        <li>Significant improvement in student results</li>
+                        <li>Coordination of workshops and conferences (50+ participants) on Python and Machine Learning.</li>
+                        <li>Management of student predictive analytics projects.</li>
                     </ul>
                 </div>
             </div>
@@ -529,7 +564,7 @@
             </h2>
             <div class="contact-content">
                 <div class="contact-info" data-aos="fade-right">
-                    <h3>Let's Stay in Touch</h3>
+                    <h3>Let's Get in Touch</h3>
                     <p>I'm always open to new opportunities and collaborations. Feel free to contact me!</p>
                     
                     <div class="contact-details">
@@ -537,7 +572,7 @@
                             <i class="fas fa-envelope"></i>
                             <div>
                                 <h4>Email</h4>
-                                <a href="mailto:fred.njomani@ensea.edu.ci">fred.njomani@ensea.edu.ci</a>
+                                <a href="mailto:fred.njomani@ensea.edu.ci">njomanifred@gmail.com</a>
                             </div>
                         </div>
                         <div class="contact-item">
@@ -564,25 +599,31 @@
                     </div>
                 </div>
 
+                <!-- Modern contact form -->
                 <form id="contact-form" class="contact-form" data-aos="fade-left">
                     <div class="form-group">
-                        <input type="text" id="name" name="name" placeholder="Your name" required>
+                        <input type="text" id="name" name="name" required>
+                        <label for="name">Your name</label>
                         <i class="fas fa-user"></i>
                     </div>
                     <div class="form-group">
-                        <input type="email" id="email" name="email" placeholder="Your email" required>
+                        <input type="email" id="email" name="email" required>
+                        <label for="email">Your email</label>
                         <i class="fas fa-envelope"></i>
                     </div>
                     <div class="form-group">
-                        <input type="text" id="subject" name="subject" placeholder="Subject" required>
+                        <input type="text" id="subject" name="subject" required>
+                        <label for="subject">Subject</label>
                         <i class="fas fa-tag"></i>
                     </div>
                     <div class="form-group">
-                        <textarea id="message" name="message" rows="5" placeholder="Your message" required></textarea>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                        <label for="message">Your message</label>
                         <i class="fas fa-comment"></i>
                     </div>
                     <button type="submit" class="btn btn-primary">
-                        <i class="fas fa-paper-plane"></i> Send Message
+                        <span class="btn-text">Send Message</span>
+                        <i class="fas fa-paper-plane"></i>
                     </button>
                     <div id="form-status"></div>
                 </form>
@@ -593,13 +634,30 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <div class="footer-content">
-                <p>&copy; 2025 Yan Fred NJOMANI SONTA. All rights reserved.</p>
-                <p class="footer-tagline">Designed and developed with <i class="fas fa-heart"></i> and <i class="fas fa-code"></i></p>
+            <div class="footer-social">
+                <a href="https://bit.ly/46DIB7P" target="_blank" class="social-link" aria-label="LinkedIn">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="https://github.com/Fred-Sonta" target="_blank" class="social-link" aria-label="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="mailto:fred.njomani@ensea.edu.ci" class="social-link" aria-label="Email">
+                    <i class="fas fa-envelope"></i>
+                </a>
             </div>
+            <p class="footer-tagline">
+                Designed and developed with <i class="fas fa-heart" style="color: #ff6b35;"></i> by Yan Fred NJOMANI SONTA
+            </p>
+            <p class="footer-copyright">
+                &copy; <span id="footer-year">2025</span> All rights reserved.
+            </p>
         </div>
     </footer>
 
+    <!-- AOS script -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <!-- Custom script -->
     <script src="script.js"></script>
 </body>
 </html>
+
