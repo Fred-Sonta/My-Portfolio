@@ -1,4 +1,12 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+"""
+Simple Python web server for a portfolio.
+Serves static files (HTML, CSS, JS) and handles a basic API
+for the contact form, saving messages to a JSON file.
+"""
+
 import http.server
 import socketserver
 import json
@@ -6,93 +14,163 @@ import os
 from datetime import datetime
 
 PORT = 5000
+# Directory where messages will be saved
+MESSAGES_DIR = 'messages'
+MESSAGES_FILE = os.path.join(MESSAGES_DIR, 'contacts.json')
 
-class MyHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
+class PortfolioHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
+    """
+    Custom handler to manage GET (files)
+    and POST (contact form) requests.
+    """
+
     def end_headers(self):
+        """
+        Adds headers to prevent browser caching.
+        Useful for development.
+        """
         self.send_header('Cache-Control', 'no-cache, no-store, must-revalidate')
         self.send_header('Pragma', 'no-cache')
         self.send_header('Expires', '0')
         super().end_headers()
     
     def do_GET(self):
+        """
+        Serves static files.
+        Redirects '/' to '/index.html'.
+        """
         if self.path == '/':
             self.path = '/index.html'
-        return super().do_GET()
+        
+        # Try to serve the requested file
+        try:
+            return super().do_GET()
+        except BrokenPipeError:
+            # Handle broken pipe errors silently (e.g., client closes connection)
+            print("Broken pipe error, client disconnected.")
+        except Exception as e:
+            print(f"GET Error: {e}")
+            self.send_error(500, "Internal Server Error")
+
     
     def do_POST(self):
+        """
+        Handles the contact form submission via the '/api/contact' API.
+        """
         if self.path == '/api/contact':
-            content_length = int(self.headers['Content-Length'])
-            post_data = self.rfile.read(content_length)
-            
             try:
-                data = json.loads(post_data.decode('utf-8'))
+                # 1. Read the request body
+                content_length = int(self.headers['Content-Length'])
+                post_data_bytes = self.rfile.read(content_length)
+                data = json.loads(post_data_bytes.decode('utf-8'))
                 
+                # 2. Validate data (basic cleaning)
                 name = data.get('name', '').strip()
                 email = data.get('email', '').strip()
                 subject = data.get('subject', '').strip()
                 message = data.get('message', '').strip()
                 
                 if not all([name, email, subject, message]):
-                    self.send_response(400)
-                    self.send_header('Content-type', 'application/json')
-                    self.end_headers()
-                    response = {'success': False, 'message': 'Tous les champs sont requis'}
-                    self.wfile.write(json.dumps(response).encode())
+                    # If fields are missing
+                    self._send_json_response(400, {
+                        'success': False, 
+                        'message': 'All fields are required' # Translated
+                    })
                     return
                 
+                # 3. Prepare the entry
                 contact_entry = {
                     'timestamp': datetime.now().isoformat(),
                     'name': name,
                     'email': email,
                     'subject': subject,
-                    'message': message
+                    'message': message,
+                    'read': False # Added an "unread" status
                 }
                 
-                os.makedirs('messages', exist_ok=True)
-                messages_file = 'messages/contacts.json'
+                # 4. Save the message to the JSON file
+                self._save_message(contact_entry)
                 
-                messages = []
-                if os.path.exists(messages_file):
-                    try:
-                        with open(messages_file, 'r', encoding='utf-8') as f:
-                            messages = json.load(f)
-                    except:
-                        messages = []
+                # Translated log
+                print(f"✅ New message received from {name} ({email})")
+                print(f"   Subject: {subject}")
                 
-                messages.append(contact_entry)
-                
-                with open(messages_file, 'w', encoding='utf-8') as f:
-                    json.dump(messages, f, ensure_ascii=False, indent=2)
-                
-                print(f"✅ Nouveau message reçu de {name} ({email})")
-                print(f"   Sujet: {subject}")
-                
-                self.send_response(200)
-                self.send_header('Content-type', 'application/json')
-                self.end_headers()
-                response = {
+                # 5. Send a success response
+                self._send_json_response(200, {
                     'success': True, 
-                    'message': f'Merci {name} ! Votre message a été envoyé avec succès. Je vous répondrai bientôt.'
-                }
-                self.wfile.write(json.dumps(response).encode())
+                    'message': f'Thank you {name}! Your message has been sent successfully.' # Translated
+                })
                 
+            except json.JSONDecodeError:
+                print("❌ Error: Non-JSON POST data.")
+                self._send_json_response(400, {
+                    'success': False, 
+                    'message': 'Invalid request format.' # Translated
+                })
             except Exception as e:
-                print(f"❌ Erreur lors du traitement du message: {e}")
-                self.send_response(500)
-                self.send_header('Content-type', 'application/json')
-                self.end_headers()
-                response = {'success': False, 'message': 'Erreur serveur. Veuillez réessayer.'}
-                self.wfile.write(json.dumps(response).encode())
+                print(f"❌ Error processing message: {e}")
+                self._send_json_response(500, {
+                    'success': False, 
+                    'message': 'Internal server error. Please try again.' # Translated
+                })
         else:
-            self.send_response(404)
-            self.end_headers()
+            # If the POST path is not '/api/contact'
+            self._send_json_response(404, {
+                'success': False, 
+                'message': 'Endpoint not found' # Translated
+            })
 
-os.chdir(os.path.dirname(os.path.abspath(__file__)))
+    def _send_json_response(self, status_code, content):
+        """
+        Utility function to send a JSON response.
+        """
+        self.send_response(status_code)
+        self.send_header('Content-type', 'application/json')
+        self.end_headers()
+        self.wfile.write(json.dumps(content).encode('utf-8'))
 
+    def _save_message(self, entry):
+        """
+        Loads existing messages, appends the new one, and saves.
+        """
+        # Ensure the 'messages' directory exists
+        os.makedirs(MESSAGES_DIR, exist_ok=True)
+        
+        messages = []
+        if os.path.exists(MESSAGES_FILE):
+            try:
+                with open(MESSAGES_FILE, 'r', encoding='utf-8') as f:
+                    messages = json.load(f)
+                    if not isinstance(messages, list):
+                        messages = []
+            except json.JSONDecodeError:
+                messages = []
+        
+        messages.append(entry)
+        
+        try:
+            with open(MESSAGES_FILE, 'w', encoding='utf-8') as f:
+                json.dump(messages, f, ensure_ascii=False, indent=4)
+        except IOError as e:
+            print(f"❌ Error writing messages file: {e}")
+            raise # Re-raise the error to be handled by do_POST
+
+# Allows reusing the address quickly after stopping
 class ReusableTCPServer(socketserver.TCPServer):
     allow_reuse_address = True
 
-with ReusableTCPServer(("0.0.0.0", PORT), MyHTTPRequestHandler) as httpd:
-    print(f"Portfolio server running on http://0.0.0.0:{PORT}")
-    print("Press Ctrl+C to stop the server")
-    httpd.serve_forever()
+if __name__ == "__main__":
+    # Change to the script's directory so file paths are correct
+    os.chdir(os.path.dirname(os.path.abspath(__file__)))
+    
+    with ReusableTCPServer(("", PORT), PortfolioHTTPRequestHandler) as httpd:
+        # Translated logs
+        print(f"Portfolio server started on http://0.0.0.0:{PORT}")
+        print(f"Use http://localhost:{PORT} to access the site.")
+        print("Press Ctrl+C to stop the server.")
+        try:
+            httpd.serve_forever()
+        except KeyboardInterrupt:
+            print("\nStopping server.")
+            httpd.server_close()
+
